@@ -7,7 +7,7 @@
     const gameBoard = document.querySelector('.game-board');
     let diffLevel;
     let wrongGuesses = 0;
-    let userWon = false;
+    let correctGuesses = 0;
     let firstCard = null;
     let secondCard = null;
 
@@ -45,8 +45,8 @@
         cardsPack.forEach(cardValue => {
             let card = document.createElement('div');
             card.classList.add('flip-card');
-            card.setAttribute('id',cardValue);
-            card.textContent = cardValue; // have to change it to image by index
+            card.style.transform = 'rotateY(-180deg)';
+            card.setAttribute('id', cardValue);
 
             let innerCard = document.createElement('div');
             innerCard.classList.add('flip-card-inner');
@@ -59,6 +59,7 @@
             back.classList.add('flip-card-back')
 
             card.addEventListener('click', () => {
+                innerCard.style.transform = 'rotateY(-180deg)';
                 console.log(card);
                 if (firstCard === null) {
                     firstCard = card;
@@ -67,9 +68,13 @@
                     if (firstCard.getAttribute('id') === secondCard.getAttribute('id')) {
                         firstCard.children[0].children[1].style.transform = 'rotateY(0)';
                         secondCard.children[0].children[1].style.transform = 'rotateY(0)';
-                        firstCard = null;
-                        secondCard = null;
+                        firstCard = secondCard = null;
+                        correctGuesses++
+                        if (correctGuesses === cardsPack.length / 2) {
+                            console.log('Win');
+                        }
                     } else {
+                        console.log('no');
                         wrongGuesses++;
                         firstCard = null;
                         secondCard = null;
