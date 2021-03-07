@@ -1,0 +1,33 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    border: 4px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-board {
+    width: 60%;
+    height: 60%;
+    border: 4px solid blue;
+    display: grid;
+    grid-gap: 1rem;
+}
+
+.card {
+    border: 1px solid gray;
+}
